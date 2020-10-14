@@ -1,26 +1,24 @@
-import React from 'react';
-import SearchBar from './SearchBar';
-import youtube from '../apis/youtube';
-import VideoList from './VideoList';
-import VideoDetail from './VideoDetail';
-
-const KEY = 'AIzaSyCN6e98GjAfa_d4E4mISSn8uCP6g5b1DvE';
+import React from "react";
+import SearchBar from "./SearchBar";
+import youtube from "../apis/youtube";
+import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
 
   componentDidMount() {
-    this.onTermSubmit('buildings');
+    this.onTermSubmit("buildings");
   }
 
   onTermSubmit = async (term) => {
-    const response = await youtube.get('/search', {
+    const response = await youtube.get("/search", {
       params: {
         q: term,
-        part: 'snippet',
+        part: "snippet",
         maxResults: 5,
-        type: 'video',
-        key: KEY,
+        type: "video",
+        key: process.env.REACT_APP_API_KEY,
       },
     });
 
